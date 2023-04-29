@@ -5,10 +5,11 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
     }
 }
 
 rootProject.name = "FluentDesign"
 include("fluent", "fluent-icons-core", "fluent-icons-extended")
 include("fluent-icons-generator")
-include("example:common", "example:desktop", "example:android")
+include("example:common", "example:desktop", "example:android", "example:web")

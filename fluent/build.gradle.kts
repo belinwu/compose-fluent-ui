@@ -16,6 +16,12 @@ kotlin {
     android("android") {
         publishLibraryVariants("release")
     }
+    js(IR) {
+        browser()
+    }
+    /*wasm {
+        browser()
+    }*/
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -45,6 +51,13 @@ kotlin {
         val jvmTest by getting
     }
     jvmToolchain(11)
+}
+
+
+compose {
+    experimental {
+        web.application {}
+    }
 }
 
 android {
@@ -96,7 +109,7 @@ publishing {
     }
     repositories {
         maven {
-            val releasesUrl ="https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            val releasesUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
             val snapshotsUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             name = "OSSRH"
             url = uri(

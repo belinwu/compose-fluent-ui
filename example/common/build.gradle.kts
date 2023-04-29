@@ -7,6 +7,12 @@ plugins {
 kotlin {
     android()
     jvm()
+    js(IR) {
+        browser()
+    }
+    /*wasm {
+        browser()
+    }*/
     sourceSets {
         val commonMain by getting {
             dependencies {

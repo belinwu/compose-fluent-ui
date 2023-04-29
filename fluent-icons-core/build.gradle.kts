@@ -14,6 +14,12 @@ kotlin {
     android {
         publishLibraryVariants("release")
     }
+    js(IR) {
+        browser()
+    }
+    /*wasm {
+        browser()
+    }*/
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -28,6 +34,12 @@ kotlin {
         val jvmTest by getting
     }
     jvmToolchain(11)
+}
+
+compose {
+    experimental {
+        web.application {}
+    }
 }
 
 android {
