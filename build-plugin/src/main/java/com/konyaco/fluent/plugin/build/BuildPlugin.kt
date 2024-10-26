@@ -18,9 +18,6 @@ class BuildPlugin : Plugin<Project> {
                 it.extensions.findByType<PublishingExtension>()?.apply {
                     setupMavenPublishing(it)
                     it.extensions.findByType<SigningExtension>()?.setupSigning(this)
-                    it.tasks.named("publishKotlinMultiplatformPublicationToMavenLocal") {
-                        dependsOn(it.tasks.named("signAndroidReleasePublication"))
-                    }
                 }
             }
         }
