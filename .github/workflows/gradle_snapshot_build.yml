@@ -47,4 +47,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Package
-        path: /home/runner/work/**/build/libs
+        path: /home/runner/work/**/[^fluent]/build/libs
