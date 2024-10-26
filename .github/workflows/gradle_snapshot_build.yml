@@ -35,10 +35,16 @@ jobs:
     - name: PublishToMavenLocal
       run: |
         ./gradlew publishDesktopPublicationToMavenLocal
-        ./gradlew publishAndroidReleasePublicationToMavenLocal
+        # ./gradlew publishAndroidReleasePublicationToMavenLocal
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
         SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Package
+        path: /home/.m2
