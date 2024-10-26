@@ -34,7 +34,9 @@ jobs:
       
     - name: PublishToMavenLocal
       run: |
+        
         ./gradlew publishDesktopPublicationToMavenLocal
+        cd ~ & ls
         # ./gradlew publishAndroidReleasePublicationToMavenLocal
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
@@ -47,4 +49,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Package
-        path: /home/runner/work/**/[^fluent]/build/libs
+        path: /home/runner/work/**/build/libs
