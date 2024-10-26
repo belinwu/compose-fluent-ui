@@ -33,10 +33,13 @@ class BuildPlugin : Plugin<Project> {
     }
 
     private fun PublishingExtension.setupMavenPublishing(target: Project) {
-        val javadocJar = target.tasks.findByName("javadocJar") ?: target.tasks.create("javadocJar", Jar::class) {
-            archiveClassifier.set("javadoc")
-        }
         publications.withType<MavenPublication> {
+            val publishName = this.name
+            val javadocJar =
+                target.tasks.findByName("javadocJar") ?: target.tasks.create("javadocJar", Jar::class) {
+                    archiveClassifier.set("javadoc")
+                    archiveAppendix.set(publishName)
+                }
             artifact(javadocJar)
             pom {
                 name.set("compose-fluent-ui")
