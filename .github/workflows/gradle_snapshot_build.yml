@@ -36,7 +36,7 @@ jobs:
       run: |
         
         ./gradlew publishDesktopPublicationToMavenLocal
-        cd ~ & ls -a
+        cd /home/runner/.m2 & ls -a
         # ./gradlew publishAndroidReleasePublicationToMavenLocal
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
