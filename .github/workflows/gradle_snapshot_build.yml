@@ -9,6 +9,7 @@ name: Gradle Publish
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build:
