@@ -37,6 +37,8 @@ jobs:
     - name: PublishToMavenLocal
       run: |
         git --version
+        git describe --abbrev=0 --tags
+        git describe --tags
         ./gradlew :gallery:assembleRelease
         # ./gradlew publishDesktopPublicationToMavenLocal
         # ./gradlew publishAndroidReleasePublicationToMavenLocal
