@@ -49,7 +49,7 @@ jobs:
         SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
 
-    - name: Decode android sign file
+    - name: Decode Android sign file
       run: echo "$ANDROID_KEYSTORE" | base64 --decode > ${{ github.workspace }}/android_sign_key.jks
       env:
           ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
