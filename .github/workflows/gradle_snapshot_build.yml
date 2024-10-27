@@ -39,7 +39,7 @@ jobs:
       run: |
         git describe --abbrev=0 --tags
         git describe --tags
-        ./gradlew :gallery:assembleRelease
+        # ./gradlew :gallery:assembleRelease
         # ./gradlew publishDesktopPublicationToMavenLocal
         # ./gradlew publishAndroidReleasePublicationToMavenLocal
       env:
@@ -48,6 +48,18 @@ jobs:
         SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
         SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+
+    - name: Decode android sign file
+      run: echo ${{ secrets.ANDROID_KEYSTORE }} | base64 --decode > ${{ github.workspace }}/android_sign_key.jks
+      
+    - name: Build Gallery Android
+      run: |
+        ./gradlew :gallery:assembleRelease
+      env:
+        ANDROID_SIGNING_FILE: ${{ github.workspace }}/android_sign_key.jks
+        ANDROID_SIGNING_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        ANDROID_SIGNING_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
@@ -55,4 +67,4 @@ jobs:
         name: Package
         path: |
           ~/.m2/repository
-          ${{github.workflow}}/gallery/**/*.apk
+          ${{github.workspace}}/gallery/**/*.apk
