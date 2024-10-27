@@ -36,6 +36,7 @@ jobs:
       
     - name: PublishToMavenLocal
       run: |
+        git --version
         ./gradlew :gallery:assembleRelease
         # ./gradlew publishDesktopPublicationToMavenLocal
         # ./gradlew publishAndroidReleasePublicationToMavenLocal
